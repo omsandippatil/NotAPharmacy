@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Not a Pharmacy store</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.5/cdn.min.js" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        background: 'hsl(var(--background))',
+                        foreground: 'hsl(var(--foreground))',
+                        card: 'hsl(var(--card))',
+                        'card-foreground': 'hsl(var(--card-foreground))',
+                        popover: 'hsl(var(--popover))',
+                        'popover-foreground': 'hsl(var(--popover-foreground))',
+                        primary: 'hsl(var(--primary))',
+                        'primary-foreground': 'hsl(var(--primary-foreground))',
+                        secondary: 'hsl(var(--secondary))',
+                        'secondary-foreground': 'hsl(var(--secondary-foreground))',
+                        muted: 'hsl(var(--muted))',
+                        'muted-foreground': 'hsl(var(--muted-foreground))',
+                        accent: 'hsl(var(--accent))',
+                        'accent-foreground': 'hsl(var(--accent-foreground))',
+                        destructive: 'hsl(var(--destructive))',
+                        'destructive-foreground': 'hsl(var(--destructive-foreground))',
+                        border: 'hsl(var(--border))',
+                        input: 'hsl(var(--input))',
+                        ring: 'hsl(var(--ring))',
+                    },
+                    borderRadius: {
+                        lg: 'var(--radius)',
+                        md: 'calc(var(--radius) - 2px)',
+                        sm: 'calc(var(--radius) - 4px)',
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;
+
+        @layer base {
+            :root {
+                --background: 60 30% 96%;
+                --foreground: 20 10% 20%;
+                --card: 60 30% 98%;
+                --card-foreground: 20 10% 20%;
+                --popover: 60 30% 98%;
+                --popover-foreground: 20 10% 20%;
+                --primary: 45 100% 50%;
+                --primary-foreground: 20 10% 20%;
+                --secondary: 40 30% 90%;
+                --secondary-foreground: 20 10% 20%;
+                --muted: 40 20% 85%;
+                --muted-foreground: 20 10% 40%;
+                --accent: 35 100% 60%;
+                --accent-foreground: 20 10% 20%;
+                --destructive: 0 85% 60%;
+                --destructive-foreground: 60 30% 96%;
+                --border: 40 15% 80%;
+                --input: 40 15% 80%;
+                --ring: 45 100% 50%;
+                --radius: 0.25rem;
+            }
+
+            .dark {
+                --background: 20 10% 10%;
+                --foreground: 60 30% 96%;
+                --card: 20 10% 15%;
+                --card-foreground: 60 30% 96%;
+                --popover: 20 10% 15%;
+                --popover-foreground: 60 30% 96%;
+                --primary: 45 100% 50%;
+                --primary-foreground: 20 10% 20%;
+                --secondary: 40 15% 25%;
+                --secondary-foreground: 60 30% 96%;
+                --muted: 40 15% 25%;
+                --muted-foreground: 60 30% 70%;
+                --accent: 35 100% 60%;
+                --accent-foreground: 20 10% 20%;
+                --destructive: 0 85% 60%;
+                --destructive-foreground: 60 30% 96%;
+                --border: 40 15% 25%;
+                --input: 40 15% 25%;
+                --ring: 45 100% 50%;
+            }
+        }
+
+        @layer base {
+            * {
+                @apply border-border;
+            }
+            body {
+                @apply bg-background text-foreground;
+                font-family: 'Courier New', Courier, monospace;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground font-mono" x-data="{ cart: [], showCart: false }">
+    <header class="bg-accent p-4">
+        <h1 class="text-4xl font-bold text-center text-accent-foreground">Not a Pharmacy store</h1>
+        <p class="text-center text-accent-foreground/80 mt-2">Where the side effects are the main effects, and the main effects are purely coincidental!</p>
+    </header>
+
+    <main class="container mx-auto mt-8 p-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-card p-6 rounded-lg shadow-lg">
+                <img src="methi.webp" alt="Methi" class="w-full h-80 object-cover mb-4 rounded"/>
+                <h2 class="text-2xl font-bold mb-2 text-card-foreground">Methi</h2>
+                <p class="mb-4 text-card-foreground/80">Bitter leaves to sweeten your existence. May cause spontaneous time travel to ancient Greek symposiums.</p>
+                <p class="text-primary font-bold mb-2">Rs.199.99 Only</p>
+                <button @click="cart.push('Methi')" class="bg-primary text-primary-foreground px-4 py-2 rounded hover:bg-primary/80">Add to Mythical Cart</button>
+            </div>
+            <div class="bg-card p-6 rounded-lg shadow-lg">
+                <img src="dietcoke.webp" alt="Diet Coke" class="w-full h-80 object-cover mb-4 rounded"/>
+                <h2 class="text-2xl font-bold mb-2 text-card-foreground">Diet Coke</h2>
+                <p class="mb-4 text-card-foreground/80">Zero calories, zero sugar, zero joy. Comes with a complimentary existential crisis.</p>
+                <p class="text-primary font-bold mb-2">$24.99</p>
+                <button @click="cart.push('Diet Coke')" class="bg-primary text-primary-foreground px-4 py-2 rounded hover:bg-primary/80">Add to Guilt-Free Cart</button>
+            </div>
+            <div class="bg-card p-6 rounded-lg shadow-lg">
+                <img src="dhaniya.webp" alt="Dhaniya" class="w-full h-80 object-cover mb-4 rounded"/>
+                <h2 class="text-2xl font-bold mb-2 text-card-foreground">Dhaniya</h2>
+                <p class="mb-4 text-card-foreground/80">The leafy green that divides humanity. Warning: May cause intense debates and spontaneous recipe recitations.</p>
+                <p class="text-primary font-bold mb-2">$29.99</p>
+                <button @click="cart.push('Dhaniya')" class="bg-primary text-primary-foreground px-4 py-2 rounded hover:bg-primary/80">Add to Controversial Cart</button>
+            </div>
+        </div>
+
+        <div class="mt-8 text-center">
+            <button @click="showCart = true" class="bg-accent text-accent-foreground px-6 py-3 rounded-full text-xl hover:bg-accent/80">View Cart of Culinary Chaos</button>
+        </div>
+
+        <div x-show="showCart" class="fixed inset-0 bg-background/50 flex items-center justify-center">
+            <div class="bg-card p-8 rounded-lg max-w-md w-full">
+                <h2 class="text-2xl font-bold mb-4 text-card-foreground">Your Cart of Questionable Taste</h2>
+                <template x-if="cart.length === 0">
+                    <p class="text-card-foreground/80">Your cart is as empty as a philosopher's bank account.</p>
+                </template>
+                <template x-if="cart.length > 0">
+                    <ul>
+                        <template x-for="item in cart">
+                            <li x-text="item" class="mb-2 text-card-foreground"></li>
+                        </template>
+                    </ul>
+                </template>
+                <div class="mt-6 flex justify-between">
+                    <button @click="showCart = false" class="bg-destructive text-destructive-foreground px-4 py-2 rounded hover:bg-destructive/80">Flee in Horror</button>
+                    <button @click="alert('Congratulations on your purchase! Side effects may include uncontrollable bursts of culinary genius, the ability to smell colors, and an inexplicable urge to start a herb garden on Mars.'); cart = [];" class="bg-primary text-primary-foreground px-4 py-2 rounded hover:bg-primary/80">Embrace the Flavor</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-accent p-4 mt-8">
+        <p class="text-center text-sm text-accent-foreground/80">Disclaimer: These products are 100% real and 200% ridiculous. </p>
+<p class="text-center text-sm text-accent-foreground/80">
+Quote: Say Drugs To No</p>
+    </footer>
+</body>
+</html>
